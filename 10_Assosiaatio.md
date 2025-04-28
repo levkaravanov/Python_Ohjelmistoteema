@@ -1,19 +1,14 @@
-# Assosiaatio
+# Ассоциация (assosiaatio)
 
-Tässä moduulissa opit kirjoittamaan ohjelmia, joissa oliot ovat vuorovaikutuksessa keskenään.
+В этом модуле вы научитесь писать программы, в которых объекты (oliot) взаимодействуют между собой.
 
-Olio-ohjelmoinnissa ohjelma koostetaan luokista. Niistä luodaan ajon aikana ilmentymiä eli olioita.
-Oliot voivat olla vuorovaikutuksessa keskenään: olio voi käsitellä toisia olioita ja kutsua niiden metodeja.
+В объектно-ориентированном программировании программа состоит из классов (luokat). Из них во время выполнения создаются экземпляры (ilmentymät), то есть объекты (oliot). Объекты (oliot) могут взаимодействовать между собой: один объект (olio) может обрабатывать другие объекты (oliot) и вызывать их методы (metodit).
 
-Tätä olioiden välistä tuntemissuhdetta kutsutaan assosiaatioksi. Assosiaatiosuhteet ohjelmoimalla saavutetaan
-olio-ohjelmoinnin voima: ohjelma pilkkoutuu pieniksi, helposti ymmärrettäviksi palasiksi, ja ohjelmoija
-voi kirjoittaa koodia vähän kerrallaan yhteen asiaan keskittyen. Kun olioiden väliset assosiaatiot
-on hyvin suunniteltu, suurikin ohjelmakokonaisuus rakentuu näistä pienistä osista ikään kuin varkain.
+Эта связь между объектами (oliot) называется ассоциацией (assosiaatio). Программируя ассоциации (assosiaatiot), достигается сила объектно-ориентированного подхода: программа делится на маленькие, легко понимаемые части, а программист может писать код понемногу, фокусируясь на одном аспекте. Когда ассоциации (assosiaatiot) между объектами (oliot) хорошо спроектированы, даже обширная программа складывается из этих маленьких частей как бы незаметно.
 
-## Rakenteen suunnittelu
+## Проектирование структуры
 
-Aiemmassa moduulissa kirjoitimme `Koira`-luokan, jossa määritetään koiran ominaisuudet (nimi, syntymävuosi ja yksilöllinen
-haukahdus). Lisäksi luokkaan on kirjoitettu yksi metodi: `hauku`. `Koira`-luokka on seuraavanlainen:
+В предыдущем модуле мы написали класс (luokka) `Koira` (Koira), где определяются свойства (ominaisuudet) собаки: имя (nimi), год рождения (syntymävuosi) и уникальная команда лая (yksilöllinen haukahdus). Кроме того, в классе (luokka) есть один метод (metodi): `hauku`. Класс (luokka) `Koira` выглядит так:
 
 ```python
 class Koira:
@@ -28,37 +23,26 @@ class Koira:
         return
 ```
 
-Laajennetaan esimerkkiä siten, että perustamme koirahoitolan. Määritellään koirahoitola seuraavasti:
-koira voidaan viedä hoitoon koirahoitolaan ja hakea
-sieltä pois. Välillä hoitolan työntekijä tekee hoitolassa kierroksen; silloin hän tervehtii kaikkia koiria, ja jokainen koira haukahtaa.
+Расширим пример, создав коирохойтолу (koirahoitola). Определим коирохойтолу (koirahoitola) так: собаку можно отвести в коирохойтолу (koirahoitola) и забрать оттуда. В определённый момент сотрудник коирохойтолы (koirahoitola) совершает обход; тогда он приветствует всех собак, и каждая собака лает.
 
-Aloitetaan pohtimalla sitä, mitä koirahoitolan toteuttamiseksi vaaditaan.
+Начнём с того, что потребуется для реализации коирохойтолы (koirahoitola).
 
-Ensinnäkin koirahoitola kannattaa toteuttaa omana luokkanaan. Hoitolan toiminnallisuus ei liity mitenkään yksittäiseen
-koiraan, eikä sitä tule kirjoittaa Koira-luokan sisään. Kirjoitamme siis ohjelmaan toisen luokan nimeltä Hoitola.
+Прежде всего коирохойтолу (koirahoitola) стоит реализовать как отдельный класс (luokka). Функциональность коирохойтолы (koirahoitola) никак не связана с отдельной собакой, и не должна быть прописана внутри `Koira`. Поэтому в программу пишем ещё один класс (luokka), названный `Hoitola` (Hoitola).
 
-Sitten pohdimme, mitä ominaisuuksia koirahoitolalla on. Huomaamme, että hoitolan täytyy
-olla tietoinen siitä, mitä koiria siellä kulloinkin on hoidossa. Sen voimme toteuttaa listan avulla: liitetään
-hoitolan ominaisuudeksi lista, jonka alkiot ovat koiria.
+Далее подумаем, какие свойства (ominaisuudet) будут у коирохойтолы (koirahoitola). Замечаем, что коирохойтола (koirahoitola) должна знать, какие собаки в ней находятся в данный момент. Это можно реализовать с помощью списка: сделаем свойством (ominaisuus) коирохойтолы (koirahoitola) список, содержащий собак.
 
-Entä onko hoitolalla toimintoja, jotka on syytä kirjoittaa metodeiksi?
-Äsken tehdystä hoitolan määrittelystä tunnistetaan, että koirahoitolalle kannattaa laatia kolme
-metodia:
-1. koiran kirjaaminen sisään hoitolaan
-2. koiran kirjaaminen ulos hoitolasta
-3. kierroksen tekeminen hoitolassa.
+Подумаем, есть ли функции (toiminnot), которые следует записать в виде методов (metodit). Из недавнего определения коирохойтолы (koirahoitola) видно, что у этого класса (luokka) целесообразно создать три метода (metodit):
+1. записать собаку в коирохойтолу (koirahoitola)
+2. выписать собаку из коирохойтолы (koirahoitola)
+3. совершить обход (kierroksen tekeminen) в коирохойтоле (koirahoitola).
 
-Nyt ohjelma on määritelty ja suunniteltu, ja pääsemme toteuttamaan sen.
+Теперь программа определена и спроектирована, и мы можем приступить к её реализации.
 
-## Kahdesta luokasta koostuva ohjelma
+## Программа из двух классов (luokat)
 
-Esimerkkiohjelmassamme on kaksi luokkaa: `Koira` ja `Hoitola`. Python-kielessä samaan lähdekooditiedostoon voidaan
-kirjoittaa monta luokaa, ja näin usein tehdäänkin. Luokat voisivat sijaita myös eri tiedostoissa. Jos tähän ratkaisuun päädytään,
-on toiseen tiedostoon viittaaminen mahdollista vain, jos ohjelman alkuun liitetään toisen tiedoston (eli moduulin)
-esittelevä `import`-lause.
+В нашем примере программа состоит из двух классов (luokat): `Koira` и `Hoitola` (Hoitola). В языке Python в одном файле исходного кода (lähdekooditiedosto) можно описать несколько классов (luokat), и это часто делается. Классы (luokat) могут быть и в разных файлах. Если на это решиться, то к другому файлу (модулю) можно обращаться лишь в том случае, если в начале программы стоит инструкция `import`, обозначающая импорт этого файла.
 
-Pienissä ohjelmissa on näppärää kirjoittaa luokat samaan tiedostoon, ja niin teemme nytkin. Luomme koirahoitola.py-nimisen
-tiedoston, ja ohjelmoimme sinne vaadittavan toiminnallisuuden:
+В небольших программах удобно писать все классы (luokat) в одном файле, что мы сейчас и сделаем. Создадим файл с именем koirahoitola.py и реализуем в нём нужную функциональность:
 
 ```python
 class Koira:
@@ -105,46 +89,39 @@ hoitola.koira_ulos(koira1)
 hoitola.tervehdi_koiria()
 ```
 
-Esimerkkiohjelma koostuu kolmesta osasta:
-1. `Koira`-luokasta
-2. `Hoitola`-luokasta
-3. pääohjelmasta.
+Примерная программа состоит из трёх частей:
+1. класса (luokka) `Koira`
+2. класса (luokka) `Hoitola` (Hoitola)
+3. основной программы (pääohjelma).
 
-Ohjelman suoritus alkaa pääohjelman alusta. Aluksi luodaan kaksi koiraa, Muro ja Rekku. Sitten luodaan uusi
-hoitola:
+Выполнение программы начинается с начала основной программы. Сначала создаются две собаки: Muro и Rekku. Затем создаётся новая коирохойтола (Hoitola):
+
 ```python
 hoitola = Hoitola()
 ```
 
-Tässä vaiheessa suoritus siirtyy Hoitola-luokan alustajaan, jossa luotavan hoitolan ominaisuudeksi
-lisätään koirat-niminen tyhjä lista. Vasta luodussa hoitolassa ei vielä ole yhtään koiraa, mutta siinä on nyt
-olemassa lista, johon koirat voidaan aikanaan lisätä.
+В этот момент управление переходит к инициализатору (alustaja) класса (luokka) `Hoitola` (Hoitola), где в свойство (ominaisuus) создаваемой коирохойтолы (Hoitola) добавляется пустой список koirat. В только что созданной коирохойтоле (Hoitola) пока нет ни одной собаки, но уже есть список, в который впоследствии можно добавить собак.
 
-Tämän jälkeen ensimmäinen koira (Muro) kirjataan sisään hoitolaan:
+После этого в коирохойтолу (Hoitola) записывается первая собака (Muro):
+
 ```python
 hoitola.koira_sisään(koira1)
 ```
-Kyseessä on hoitolan tarjoama metodi: sisäänkirjaus on selkeästi hoitolan toiminto, ja se on sen vuoksi ohjelmoitu
-`Hoitola`-luokkaan. Sisäänkirjauksen yhteydessä on tietenkin kerrottava, mitä koiraa ollaan kirjaamassa. Tätä varten
-`Koira`-olio (tai oikeastaan viittaus siihen) annetaan metodikutsun argumenttina. Metodikutsun seurauksena suoritus siirtyy
-`koira_sisään`-metodiin, jossa parametrina saatu koira lisätään hoitolan koiralistaan.
+Это метод (metodi), предоставляемый коирохойтолой (Hoitola): запись внутрь — явно функциональность коирохойтолы (Hoitola), и потому она реализована в классе (luokka) `Hoitola`. При записи необходимо указать, какую собаку мы записываем. Для этого объект (olio) `Koira` (по сути, ссылка на него) передаётся в вызов метода в качестве аргумента. В результате выполнения метод (metodi) `koira_sisään` добавляет полученную в параметре собаку в список коирохойтолы (Hoitola).
 
-Samaan tapaan hoitolaan lisätään toinen koira, Rekku.
+Аналогично в коирохойтолу (Hoitola) добавляется вторая собака, Rekku.
 
-Sitten hoitajan on aika tehdä hoitolassa kierros ja tervehtiä kaikkia koiria. Tätä varten kutsutaan vastaavaa `Hoitola`-luokkaan
-kirjoitettua metodia:
+Затем сотрудник совершает обход и приветствует всех собак. Для этого вызывается метод (metodi) того же класса (luokka) `Hoitola`:
+
 ```python
 hoitola.tervehdi_koiria()
 ```
-Tämä metodi toteutettiin parametrittomana. Tervehtiminen kohdistuu kaikkiin hoitolassa kulloinkin oleviin koiriin, ja
-hoitola itse tietää, mitä koiria siellä kulloinkin on hoidossa. Metodi käy läpi koirien listan ja käskee
-kutakin koiraa haukahtamaan yhden kerran.
+Этот метод (metodi) реализован без параметров. Приветствие направлено всем собакам, находящимся в коирохойтоле (Hoitola), и сама коирохойтола (Hoitola) знает, какие собаки там сейчас есть. Метод (metodi) проходит по списку собак и заставляет каждую собаку лаять один раз.
 
-Lopuksi esimerkkiohjelmassa kirjataan ulos yksi koira, Muro. Tätä varten kutsutaan `Hoitola`-luokkaan kirjoitettua vastaavaa
-metodia, joka poistaa annetun alkion listasta. Tämän jälkeen koiria tervehditään jälleen, mutta tervehdykseen on
-vastaamassa enää Rekku.
+Наконец, в примере одна собака (Muro) выписывается. Для этого вызывается соответствующий метод (metodi) класса (luokka) `Hoitola`, который удаляет переданный ему объект (olio) из списка. После этого собаки снова приветствуются, но теперь отвечает на приветствие только Rekku.
 
-Ohjelman toiminta ilmenee sen tuottamasta tulosteesta:
+Работа программы становится понятна из её вывода:
+
 ```python
 Muro kirjattu sisään
 Rekku kirjattu sisään
@@ -154,29 +131,17 @@ Muro kirjattu ulos
 Rekku haukkuu: Viu viu viu
 ```
 
-Näin kirjoitimme ohjelman, jossa on ilmentymiä (eli olioita) kahdesta eri luokasta. Sanomme, että `Hoitola`-
-ja `Koira`-luokkien välillä on pysyvä assosiaatiosuhde: `Hoitola`-oliolla on instanssimuuttuja, joka sisältää viittaukset
-`Koira`-olioihin.
+Так мы написали программу, в которой есть экземпляры (ilmentymät) двух различных классов (luokat). Говорим, что между классами (luokat) `Hoitola` (Hoitola) и `Koira` существует постоянная ассоциация (pysyvä assosiaatiosuhde): у объекта (olio) `Hoitola` есть переменная экземпляра (instanssimuuttuja), содержащая ссылки на объекты (oliot) `Koira`.
 
-Assosiaatiosuhde on tässä yksisuuntainen: `Hoitola`-olio tietää, mitä koiria kulloinkin on hoidossa. `Koira`-olio sen sijaan
-ei tiedä mitään hoitolasta, jossa se mahdollisesti on. Assosiaatiosuhde voidaan toteuttaa yksi- tai kaksisuuntaisena.
-Kaksisuuntainen assosiaatiosuhde kannattaa ottaa käyttöön vain silloin, kun sille on hyvät perusteet. Tällöin
-ohjelmoijalle tulee ylimääräistä kuormaa siitä, että eri suuntiin olevien olioviittausten on oltava sisällöiltään
-synkronoidut.
+Эта ассоциация (assosiaatio) в данном случае односторонняя: объект (olio) `Hoitola` знает, какие именно собаки у него на попечении, а объект (olio) `Koira` ничего не знает о коирохойтоле (Hoitola), в которой он находится. Ассоциация (assosiaatio) может быть одно- или двусторонней. Двустороннюю реализацию стоит использовать только при хороших основаниях. Тогда у программиста появляется дополнительная нагрузка – следить за тем, чтобы ссылки в обе стороны оставались согласованными.
 
+## Временная ассоциация (tilapäinen assosiaatiosuhde)
 
-## Tilapäinen assosiaatiosuhde
+Ранее мы отметили, что между классами (luokat) `Hoitola` (Hoitola) и `Koira` существует постоянная ассоциация (pysyvä assosiaatiosuhde): список собак хранится как свойство (ominaisuus) у коирохойтолы (Hoitola).
 
-Edellä todettiin, että esimerkin `Hoitola`- ja `Koira`-luokkien välillä oli pysyvä assosiaatiosuhde: hoitolan koirat
-on tallennettu hoitolan ominaisuutena olevaan koiralistaan.
+Между `Hoitola` (Hoitola) и `Koira` также есть другой вид связи: класс (luokka) `Hoitola` (Hoitola) предоставляет два метода (metodit), в параметрах которых передаётся ссылка на объект (olio) `Koira`. Ассоциация (assosiaatio) может существовать только во время вызова метода, если объект (olio) другой стороны передаётся в параметрах метода (metodi). Когда выполнение метода (metodi) заканчивается, связь, возникшая во время выполнения, исчезает, если информация об этой связи не сохранена как свойство (ominaisuus), как сделано в нашем примере.
 
-`Hoitola`- ja `Koira`-luokkien välillä on myös toisenlainen riippuvuus: `Hoitola`-luokka tarjoaa kaksi metodia, joiden
-parametrina annetaan viittaus `Koira`-olioon. Assosiaatiosuhde voi olla voimassa vain metodikutsun ajan silloin,
-kun toisen luokan ilmentymä kerrotaan metodin parametrina. Kun metodin kutsu päättyy, katoaisi metodin suorituksen
-aikainen assosiaatiosuhdekin, ellei tietoa suhteesta ole tallennettu ominaisuudeksi, kuten esimerkissämme on tehty.
-
-Tarkastellaan nyt esimerkkiä tilanteesta, jossa assosiaatiosuhde on puhtaasti tilapäinen: auton ja maalaamon välistä
-suhdetta. Esimerkissä luodaan sininen auto ja annetaan se maalaamolle maalattavaksi punaiseksi:
+Рассмотрим пример, где ассоциация (assosiaatio) чисто временная: между автомобилем (auto) и малярной мастерской (maalaamo). В примере создаётся синий автомобиль (auto) и передаётся в малярную мастерскую (maalaamo), чтобы его перекрасили в красный:
 
 ```python
 class Auto:
@@ -195,13 +160,11 @@ maalaamo.maalaa(auto, "punainen")
 print("Auto on nyt " + auto.väri)
 ```
 
-Ohjelma tulostaa auton värin ennen ja jälkeen maalauksen:
+Программа выводит цвет автомобиля до и после покраски:
 
 ```monospace
 Auto on sininen
 Auto on nyt punainen
 ```
 
-Tässä esimerkissä maalaamo tuntee maalattavan auton vain `maalaa`-metodin suorituksen ajan, sillä viittaus `Auto`-olioon
-on saatu metodikutsun parametrina. Kun metodin suoritus päättyy, parametrimuuttujan arvoon ei enää pääse käsiksi.
-Myöskään auto ei tiedä maalaamosta mitään. Maalaamon ja auton assosiaatiosuhde on tässä esimerkissä tilapäinen.
+В этом примере малярная мастерская (maalaamo) «знает» о перекрашиваемом автомобиле (auto) только во время выполнения метода (metodi) `maalaa`, поскольку ссылка на объект (olio) `Auto` получена в параметре метода. Когда выполнение метода (metodi) заканчивается, доступ к значению параметра уходит. Кроме того, автомобиль (auto) тоже не знает ничего о малярной мастерской (maalaamo). Ассоциация (assosiaatio) между малярной мастерской (maalaamo) и автомобилем (auto) в этом примере временная.

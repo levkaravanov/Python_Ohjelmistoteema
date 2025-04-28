@@ -1,114 +1,90 @@
-# Ensimmäinen ohjelma
+# Первая программа
 
-Tervetuloa ohjelmoimaan Python-kieltä Metropolia Ammattikorkeakoulussa!
+Добро пожаловать к программированию (Python) в (Metropolia Ammattikorkeakoulu)!
 
-... ja sama Pythoniksi:
+… и то же самое на (Python):
 ```
-print("Tervetuloa opiskelemaan Python-kieltä!")
+print("Добро пожаловать изучать (Python)!")
 ```
-Python on maailman yleisimpiä ohjelmointikieliä. Kun opiskelet Pythonia, voit:
-- oppia ohjelmoimaan helposti ja hauskasti
-- koodata laadukkailla ja ergonomisilla kehitystyökaluilla
-- luoda näyttävää grafiikkaa visualisointikirjastojen avulla
-- soveltaa tekoälyä kattavien koneoppimiskirjastojen ansiosta
+(Python) — один из самых распространённых языков программирования в мире. Когда вы изучаете (Python), вы можете:
+- учиться программировать легко и увлекательно
+- писать код с помощью качественных и удобных инструментов разработки
+- создавать впечатляющую графику, используя библиотеки для визуализации
+- применять искусственный интеллект благодаря обширным библиотекам машинного обучения
 
-Ensimmäisenä opiskeluvuonna saat vankat Python-ohjelmoinnin perustaidot. Syvennät osaamistasi myöhemmissä opinnoissa,
-ja opit käyttämään Python-kieltä työkaluna ohjelmointi- ja ohjelmistotuotantoprojekteissa. 
+В первый год обучения вы получите прочные базовые навыки программирования на (Python). Позже вы углубите свои знания и научитесь использовать (Python) в проектах по программированию и разработке ПО.
 
-Tässä ensimmäisessä moduulissa asennat Python-kehitystyökalut ja opit kirjoittamaan ja ajamaan ensimmäisen Python-ohjelmasi.
+В этом первом модуле вы установите инструменты разработки на (Python) и научитесь писать и запускать свою первую (Python)-программу.
 
-## Python-tulkin asennus
+## Установка (Python)-интерпретатора
 
-Tällä opintojaksolla käytetään Python-ohjelmointikieltä ja JetBrains PyCharm -kehitintä.
+На этом курсе мы будем использовать язык (Python) и среду разработки (JetBrains PyCharm-kehitin).
 
-Python-tulkki on ohjelma, joka lause
-kerrallaan tulkkaa Python-kieliset lauseet tietokoneen suorittimen ymmärtämään muotoon eli konekielelle. Sen asentaminen
-on välttämätöntä, jotta voit ohjelmoida Pythonilla.
+Интерпретатор (Python) — это программа, которая пошагово переводит инструкции, написанные на (Python), в машинный код, понятный процессору. Установка этого интерпретатора необходима, чтобы вы могли программировать на (Python).
 
-Lataa Python-tulkki käyttöösi seuraavasti:
+Скачайте интерпретатор (Python) следующим образом:
 
-1. Siirry selaimella sivulle https://www.python.org/downloads/.
-2. Valitse **Downloads / All releases**
-3. Selaa sivua alemmaksi kohtaan **Looking for a specific release?**. Napsauta **Download** jonkin versionumeron
-3.7.X - 3.9.X kohdalla, missä X voi olla mikä tahansa numero.
-4. Lataa Python napsauttamalla sivun alaosassa linkkiä **Windows installer (64-bit)**.
-5. Etene ohjatun toiminnon
-esittämällä tavalla, ja asenna Python asennusohjelman ehdottamaan oletussijaintiin.
+1. Перейдите в браузере на страницу https://www.python.org/downloads/.
+2. Выберите **Downloads / All releases**.
+3. Прокрутите страницу вниз до **Looking for a specific release?**. Нажмите **Download** рядом с версией с номером 3.7.X – 3.9.X, где X — любое число.
+4. Скачайте (Python), щёлкнув ссылку **Windows installer (64-bit)** в нижней части страницы.
+5. Следуйте инструкциям установщика и установите (Python) по умолчанию.
 
-**Tärkeää:** Ohjattu asennustoiminto tarjoaa mahdollisuuden lisätä Python-tulkki Windows-käyttöjärjestelmän
-`PATH`-ympäristömuuttujaan. Kyseinen ympäristömuuttuja sisältää luettelon kansioista, joista
-käyttöjärjestelmä etsii suoritettavia ohjelmia automaattisesti. Lisäys kannattaa tehdä: sen
-ansiosta voit antaa komentoikkunassa komennon `python` mistä tahansa kansiosta, ja Python-tulkki
-löytyy automaattisesti. (Tästä on hyötyä tulevilla Laitteisto 1 ja 2 -opintojaksoilla, joilla myös työskennellään Pythonilla.)
+**Важно:** мастер установки предлагает возможность добавить (Python)-интерпретатор в переменную окружения (PATH) операционной системы (Windows). (PATH) хранит список каталогов, в которых операционная система автоматически ищет выполняемые файлы. Добавление интерпретатора в (PATH) позволит запускать (Python) из любой папки через командную строку. (Это пригодится на будущих курсах по оборудованию (Laitteisto 1 ja 2), где тоже используется (Python).)
 
-Seuraava kuva näyttää valintaruudun, josta lisäys tehdään:
+Ниже показано окно, в котором осуществляется добавление:
 
 ![PATH-ympäristömuuttujan päivittäminen](img/path_envvar.png)
 
+>На этом курсе используется также база данных (MariaDB). Для неё требуется драйвер (MySQL Connector/Python), который, на момент написания (август 2022), не поддерживает последние версии (Python 3.10). Поэтому лучше выбрать немного более старую версию (например, 3.9), для которой поддержка уже реализована. Если вы сейчас скачаете новейшую версию (Python), возможно, потом придётся установить более раннюю версию параллельно.
 
->Tällä kurssilla käytetään myös MariaDB-tietokantaa. Sen vaatima MySQL Connector/Python -ajuri ei tätä kirjoitettaessa (elokuu 2022)
-vielä tue uusimpia Python 3.10 -versioita. Tästä syystä kannattaa valita hieman vanhempi versio (esimerkiksi 3.9), jolle
-tuki on jo olemassa. Jos lataat nyt uusimman Python-version, voit myöhemmin joutua asentamaan aiemman version rinnalle.
+## Установка среды разработки
 
-## Kehittimen asennus
+Далее устанавливаем (PyCharm-kehitin), то есть (IDE) (Integrated Development Environment). (IDE) — это профессиональная программа, позволяющая писать, запускать и тестировать код.
 
-Seuraavaksi asennetaan PyCharm-kehitin eli IDE. IDE on lyhenne englannin kielen sanoista
-*Integrated Development Environment*. Se tarkoittaa ammattikäyttöön
-soveltuvaa ohjelmistoa, jonka avulla voit kirjoittaa, ajaa ja testata ohjelmia.
+Загрузите (PyCharm-kehitin) следующим образом:
+1. Перейдите на сайт https://www.jetbrains.com/.
+2. Выберите **Developer tools / PyCharm** и нажмите **Download**.
+3. Выберите для скачивания Профессиональную версию (Professional-versio).
+4. Получите лицензию, зарегистрировав программу как студент (Metropolia). Установщик подскажет, как это сделать. Вам потребуется учётная запись (JetBrains) и студенческая лицензия, которую вы можете бесплатно продлевать ежегодно. Для этого нажмите на сайте (JetBrains) на иконку корзины и выберите **Special offers / For students and teachers**, заполните все необходимые данные, используя студенческую почту, и завершите регистрацию согласно инструкциям из письма. Когда срок действия лицензии закончится, вы получите электронное письмо с инструкциями о продлении.
 
-PyCharm-kehittimen voit ladata seuraavasti:
-1. Siirry osoitteeseen https://www.jetbrains.com/
-2. Valitse **Developer tools / PyCharm** ja paina **Download**.
-3. Valitse ladattavaksi Professional-versio.
-4. Saat käyttöön oikeuttavan lisenssin, kun rekisteröit ohjelmiston Metropolian opiskelijana. Asennusohjelma opastaa sinua tässä. Käyttöönotto edellyttää JetBrains-tilin luomista ja opiskelijalisenssin hankkimista. Voit opiskelijana hankkia maksutta vuoden kerrallaan voimassa olevan lisenssin napsauttamalla JetBrains-sivuston yläreunassa olevaa ostoskärrykuvaketta ja valitsemalla **Special offers / For students and teachers**. Syötä lomakkeen tiedot käyttämällä Metropolian sähköpostiosoitetta ja viimeistele aktivointi sähköpostiin saamasi ohjeen mukaan. Kun lisenssi on vuoden päästä vanhenemassa, saat sähköpostiin automaattisesti ohjeen sen uusimisesta.  
+После установки запустите (PyCharm) через соответствующую иконку.
 
-Asennuksen jälkeen voit käynnistää PyCharm-ohjelman napsauttamalla sen kuvaketta.
+При первом запуске (PyCharm) может предложить вводный тур или демонстрационный проект. Можно отказаться от них.
 
-Kun käynnistät kehittimen ensimmäistä kertaa, PyCharm saattaa tarjota esittelykierrosta tai tervetuloprojektia.
-Voit kieltäytyä niistä.
+## Создание проекта и (Python)-файла
 
-## Projektin ja Python-tiedoston luonti
-
-Nyt olet valmis kirjoittamaan ensimmäisen ohjelman. Ensimmäiseksi on perustettava projekti. Projektia voi ajatella eräänlaisena
-salkkuna, johon kerätään samaan aihepiiriin liittyviä ohjelmia. Esimerkiksi ensimmäisiä ohjelmointikokeiluja
-varten voit perustaa uuden projektin nimeltä ´kokeilut´. Nimi kirjoitetaan projektin tiedostopolun perään:
+Теперь вы готовы написать первую программу. Сперва нужно создать проект: представляйте его как «портфель» для программ по одной тематике. Для первых экспериментов можно создать проект «kokeilut». Название будет частью пути к проекту:
 
 ![Uuden projektin luonti](img/uusiprojekti.png)
 
-Uusi projekti perustetaan oletusarvoisesti virtuaaliympäristöön (venv). Tämä helpottaa ohjelmien käyttämien
-pakkausten ja niiden versioiden hallintaa.
+Новый проект по умолчанию создаётся в виртуальном окружении (venv). Это упрощает управление пакетами и их версиями.
 
-Kun painat **Create**, kehitin kysyy, avataanko projekti olemassaolevassa vai uudessa ikkunassa. Voit valita kumman vain vaihtoehdon.
+При нажатии **Create** (IDE) спросит, открыть проект в существующем или новом окне. Выберите любой вариант.
 
-Näytön vasempaan reunaan ilmestyy projektipuu, joka näyttää projektiin kuuluvat tiedostot:
+Слева отобразится древовидное окно проекта с файлами:
 
 ![Uuden projektin luonti](img/projektipuu.png)
 
-Jokainen ohjelma kirjoitetaan tiedostoon projektin kansiohierarkian sisälle. Voit tehdä ensimmäistä
-ohjelmaa varten uuden tiedoston napsauttamalla projektin nimeä projektipuussa hiiren kakkospainikkeella.
-Valitse sitten **New / Python file** ja kirjoita avautuvaan valintaikkunaan tiedoston nimi, esimerkiksi
-`heimaailma`.
-Projektipuuhun ilmestyy kuvassa näkyvä tiedosto nimeltä `heimaailma.py`. Python-ohjelma kirjoitetaan tiedostoihin, joiden päättenä on ´.py´. 
+Каждая программа пишется в файле внутри структуры папок проекта. Чтобы создать файл для первой программы, щёлкните правой кнопкой мыши по имени проекта в этом дереве. Выберите **New / Python file** и в открывшемся диалоговом окне введите имя файла, например `heimaailma`.
 
+В дереве проекта появится файл `heimaailma.py`. (Python)-программы пишутся в файлах с расширением `.py`.
 
-## Ohjelman kirjoitus, tallennus ja ajo
+## Написание, сохранение и запуск программы
 
-Ohjelma, eli Python-lähdekoodi, kirjoitetaan editorikenttään: 
+(Python)-код программы записывается в главном редакторе:
 
 ![Ensimmäinen ohjelma](img/ekaohjelma.png)
 
-Voit suorittaa eli ajaa ohjelman napsauttamalla hiiren kakkospainiketta editorikentässä ja valitsemalla **Run 'hello'**.
+Чтобы запустить программу, щёлкните правой кнопкой мыши в редакторе и выберите **Run 'hello'**.
 
-Tuloste ilmestyy alareunan konsoli-ikkunaan:
+Результат появится в консоли внизу:
 
 ```python
 Hei, maailma!
 ```
 
-Jos ohjelmassa on virheitä, ei hätää! Saat virheilmoituksen, joka auttaa virheen paikantamisessa. Sen jälkeen voit
-korjata ohjelmaa niin monta kertaa kuin on tarpeen ja suorittaa sen aina uudelleen.
+Если в программе есть ошибки, не беда! Вы увидите сообщение об ошибке, которое поможет найти и исправить её. Можно повторять этот процесс сколько угодно раз.
 
-Virheiden teko kuuluu ohjelmointiin. On arvioitu, että 80 prosenttia ammattimaisen ohjelmoijan työajasta kuuluu
-virheiden jäljitykseen ja niiden korjaamiseen. Myös oppiminen tapahtuu virheitä tekemällä. Kun selvität virheen
-syyn ja korjaat sen, olet oppinut hieman paremmaksi ohjelmoijaksi.
+Ошибки — неотъемлемая часть программирования. Считается, что программист-профессионал тратит до 80% рабочего времени на поиск и исправление ошибок. Учёба тоже происходит за счёт ошибок. Когда вы находите причину ошибки и исправляете её, вы становитесь чуть лучше как программист.
 

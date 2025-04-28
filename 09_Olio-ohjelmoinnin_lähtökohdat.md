@@ -1,32 +1,25 @@
-# Luokka, olio, alustaja
+# Класс (luokka), объект (olio), конструктор (alustaja)
 
-Tässä moduulissa opit olio-ohjelmoinnin lähtökohdat. Opit kirjoittamaan luokkia, jotka määrittävät yhteiset ominaisuudet
-ja operaatiot luokan ilmentymille eli olioille. Opit olioiden luonnin, alustamisen ja käytön periaatteet.
+В этом модуле вы изучите основы объектно-ориентированного программирования (olio-ohjelmoinnin lähtökohdat). Вы научитесь писать классы (luokka), которые определяют общие свойства и операции для экземпляров (ilmentymät), то есть объектов (oliot). Вы узнаете принципы создания, инициализации и использования объектов (olioiden).
 
-## Luokat ja oliot
+## Классы (luokat) и объекты (oliot)
 
-Olio-ohjelmoinnissa luokalla tarkoitetaan yleiskäsitettä, joka määrittää yleiset ja yhteiset piirteet, joita
-sen jäsenillä on.
+В объектно-ориентированном программировании (olio-ohjelmointi) класс (luokka) означает общее понятие, которое задает общие черты для своих членов. 
 
-Esimerkiksi **koira** on tällainen yleiskäsite. Jokaisella koiralla on joukko ominaisuuksia
-kuten nimi ja syntymävuosi. Lisäksi koiralla on toimintoja (eli Python-termein metodeja) kuten haukkuminen.
+Например, «собака (Koira)» — это такое общее понятие. У каждой собаки есть набор свойств (например, имя и год рождения), а также функции (в терминах Python (Python-termein) — методы (metodit)), такие как «лаять». 
 
-Voimme nyt kirjoittaa pienimmän mahdollisen Koira-luokan seuraavasti:
+Можно написать минимальный класс (luokka) «Собака (Koira)» так:
+
 ```python
 class Koira:
     pass
 ```
 
-Edellä `pass`-lause on tyhjä lause, joka ei tee mitään. Se tarvitaan paikkamerkiksi, sillä luokan määrityksen rungossa on oltava
-ainakin yksi lause.
+Оператор `pass` ничего не делает и служит заполнителем, поскольку в теле класса (luokka) должна быть хотя бы одна инструкция. 
 
-Tämä luokan määritys vain kertoo, että on olemassa Koira-luokka. Se ei toistaiseksi ota kantaa koirien ominaisuuksiin
-eikä niiden metodeihin.
+Данный класс (luokka) лишь указывает, что существует «Собака (Koira)». Он пока не определяет свойства или методы (metodit). 
 
-Voimme käyttää Koira-luokkaa siten, että luomme tuosta luokasta olion. Olio tarkoittaa luokan ajonaikaista ilmentymää
-eli realisaatiota. Luomme näin Koira-olion, joka on nimeltään Rekku ja jonka syntymävuosi on 2022: 
-
-
+Можно использовать «Собака (Koira)» так, что создаем из класса (luokka) объект (olio). Объект (olio) — это исполненная (во время работы программы) реализация класса. Ниже создается объект (olio) типа «Собака (Koira)» с именем «Rekku» и годом рождения 2022:
 
 ```python
 class Koira:
@@ -36,36 +29,26 @@ koira = Koira()
 koira.nimi = "Rekku"
 koira.syntymävuosi = 2022
 
-print (f"{koira.nimi:s} on syntynyt vuonna {koira.syntymävuosi:d}." )
+print (f"{koira.nimi:s} on syntynyt vuonna {koira.syntymävuosi:d}.")
 ```
 
-Pääohjelman ensimmäinen lause luo Koira-olion, johon viitataan muuttujalla `koira`. Luodulle koiralle annetaan
-nimeksi Rekku ja syntymävuodeksi 2022. Nämä ovat luodun olion ominaisuuksia, ja ne ovat oliokohtaisia. Voisimme siis luoda
-monta koiraa, joista jokaisella olisi oma yksilöllinen nimensä ja syntymävuotensa. Jollekin koirista voisimme
-lisäksi määrittää rodun ja jollekin lempinimen. Olioiden ominaisuudet voivat siis poiketa toisistaan.
+Первая инструкция в главной программе создает объект (olio) типа «Собака (Koira)», на который ссылается переменная `koira`. Затем объекту (olio) назначаются имя и год рождения 2022. Эти свойства (ominaisuudet) относятся к конкретному объекту (olio). Можно создать много собак (koiria), каждая из которых имеет свои индивидуальные свойства. 
 
-Kuten esimerkistä näkyy, olion ominaisuuteen viitataan kirjoittamalla ensin olion nimi, sitten piste ja lopuksi
-ominaisuuden nimi. Esimerkki tällaisesta viittauksesta on `koira.nimi`.
+Свойству (ominaisuus) объекта (olio) ссылаются через имя объекта, точку и имя свойства, например `koira.nimi`. 
 
-Esimerkkiohjelman viimeinen lause tulostaa pääohjelman luoman koiraolion nimen ja syntymävuoden:
+Последняя инструкция примера выводит имя и год рождения собаки (obъекта (olio)):
+
 ```monospace
 Rekku on syntynyt vuonna 2022.
 ```
 
-Huomaa Python-kielen vakiintunut kirjoitustapa luokkien nimille: ne kirjoitetaan isoin alkukirjaimin. Jos luokan nimi koostuu
-useammasta sanasta, sanat kirjoitetaan yhteen ilman alaviivamerkkiä siten, että kukin sana aloitetaan isolla
-alkukirjaimella. Tästä kirjoitustyylistä käytetään nimitystä *CamelCase*. Esimerkki tällaisesta luokan nimestä
-on `NäytönSuorakulmio`.
+Обратите внимание на принятый в языке Python (Python-kieli) стиль написания названий классов (luokka): они пишутся с заглавной буквы. Если название состоит из нескольких слов, они пишутся слитно, начиная каждое слово с заглавной буквы (CamelCase). Например, «NäytönSuorakulmio».
 
+## Конструктор (alustaja)
 
-## Alustaja eli konstruktori
+В предыдущем примере объект (olio) класса (luokka) «Собака (Koira)» создавался так, что сначала делался объект без свойств, а затем свойства назначались по одному. Это утомительно для программиста.
 
-Edellä Koira-olio luotiin siten, että ensin tehtiin olio ilman ominaisuuksia, ja sen jälkeen oliolle määritettiin
-ominaisuudet yksi kerrallaan. Tämä on ohjelmoijalle melko työläs tapa luoda olioita.
-
-Olioiden luonnin helpottamiseksi luokan sisälle kirjoitetaan usein alustaja eli konstruktori, joka automaattisesti
-asettaa halutut arvot luotavan olion ominaisuuksiksi. Seuraavan esimerkin luokassa on nimen ja syntymävuoden asettava
-alustaja. Pääohjelma käyttää olion luonnissa juuri laadittua alustajaa:
+Чтобы упростить создание объектов (olioiden), часто пишут конструктор (alustaja) внутри класса (luokka), который автоматически устанавливает нужные значения свойств создаваемого объекта. В примере конструктор (alustaja) задает имя и год рождения, а главная программа использует его:
 
 ```python
 class Koira:
@@ -75,37 +58,27 @@ class Koira:
 
 koira = Koira("Rekku", 2022)
 
-print (f"{koira.nimi:s} on syntynyt vuonna {koira.syntymävuosi:d}." )
+print (f"{koira.nimi:s} on syntynyt vuonna {koira.syntymävuosi:d}.")
 ```
 
-Python-kielen alustaja määritetään luokan sisällä kirjoittamalla funktio, jonka nimenä
-on `__init__`. Funktion ensimmäiseksi parametriksi määritetään aina `self`. Tämän jälkeen määritellään
-muut parametrit, jotka alustajalle halutaan antaa. Tässä tapauksessa ne ovat nimi ja syntymävuosi. Näin kirjoitettu
-ja nimetty funktio tulkitaan ohjelmaa ajettaessa automaattisesti alustajaksi, ja se suoritetaan aina, kun uusi
-olio luodaan. Alustajan loppuun ei kirjoiteta return-lausetta.
+В языке Python (Python-kieli) конструктор (alustaja) определяется внутри класса (luokka) с помощью функции `__init__`. Первый параметр всегда `self`. Далее можно задать нужные параметры, которые передаются конструктору (alustaja). В примере это `nimi` и `syntymävuosi`. Эта функция выполняется при создании нового объекта (olio). В конце конструктора (alustaja) нет оператора `return`.
 
-Alustajan sisällä on kaksi sijoituslausetta, joilla annetaan arvot luotavan olion ominaisuuksille.
-Uuden olion ominaisuuksiin viitataan kirjoittamalla varattu sana `self`, minkä jälkeen tulee piste ja halutun
-ominaisuuden nimi. Uuden olion ominaisuuden arvoksi annetaan tyypillisesti alustajan parametrina saatu arvo. Esimerkiksi
-lause `self.nimi = nimi` antaa uuden olion nimi-ominaisuuden arvoksi nimi-parametrimuuttujan arvon.
+Внутри конструктора (alustaja) два оператора присваивания, которые назначают значения свойствам создаваемого объекта. Для ссылки на свойства (ominaisuudet) нового объекта (olio) используется `self`, за которым следует точка и имя свойства. 
 
-Huomaa, että oliota luotaessa alustajan ensimmäinen parametri `self` ohitetaan kokonaan. Ei siis kirjoiteta:
+Обратите внимание, что при создании объекта (olio) первый параметр `self` пропускается:
+
 ```python
-# Virheellinen luontilause
+# Неверно
 koira = Koira(self, "Rekku", 2022)
 ```
-vaan kirjoitetaan:
+нужно писать:
 ```python
 koira = Koira("Rekku", 2022)
 ```
 
+## Методы (metodit)
 
-## Metodit
-
-Edellä opittiin määrittämään oliolle ominaisuuksia. Tämän lisäksi olioille halutaan usein määrittää toimintoja, joita 
-kutsutaan metodeiksi. Kirjoitetaan alla Koira-luokkaan hauku-metodi, jota voidaan kutsua Koira-luokan ilmentymille eli
-olioille. Esimerkin ohjelma luo kaksi Koira-oliota ja käskee niitä haukkumaan kyseiselle oliolle
-tyypilliseen tapaan:
+Ранее мы научились задавать свойства (ominaisuudet) для объекта (olio). Часто хочется определить и действия, которые объект (olio) может совершать, то есть методы (metodit). Ниже мы пишем метод (metodi) «hauku» в класс (luokka) «Собака (Koira)». Пример создает два объекта (oliot) «Собака (Koira)» и заставляет их лаять по-своему:
 
 ```python
 class Koira:
@@ -127,27 +100,17 @@ koira1.hauku(2)
 koira2.hauku(5)
 ```
 
-Alustajan parametreja on nyt kolme. Viimeiselle parametrille (`haukahdus`) on annettu oletusarvo, joka asetetaan
-silloin, kun parametria ei oliota luetaessa anneta. Esimerkissä Muro-koira saa siis oletushaukahduksen.
+Теперь у конструктора (alustaja) три параметра, а для `haukahdus` задано значение по умолчанию. В примере собака (Muro) получает «штатный» вариант лая. 
 
-Luokan sisään kirjoitettiin `hauku`-niminen metodi, jota voidaan kutsua mille tahansa olemassa olevalle Koira-luokan
-ilmentymälle. Metodin ensimmäiseksi parametriksi asetetaan aina `self`. Tämän jälkeen luetellaan muut parametrit, joiden
-arvo annetaan metodia kutsuttaessa.
+Внутри класса (luokka) объявлен метод (metodi) `hauku`, который можно вызвать для любого объекта (olio) класса (luokka) «Собака (Koira)». Первый параметр метода всегда `self`, далее указываются нужные параметры. 
 
-Metodin kutsu tehdään siten, että kirjoitetaan olion nimi, sen jälkeen piste ja lopuksi metodin nimi kaarisulkeineen
-ja mahdollisine parametreineen. Esimerkiksi kutsu `koira1.hauku(2)` kutsuu koira1-olion hauku-metodia. Metodikutsun parametrina
-välitetään haukahdusten määrä (2). Metodin sisällä voidaan viitata olion omiin ominaisuuksiin siten,
-että kirjoitetaan `self`, jota seuraa piste ja ominaisuuden nimi. Esimerkiksi ilmaisu `self.haukahdus` viittaa kulloisenkin
-olion `haukahdus`-ominaisuuden arvoon.
+Вызов метода (metodi) делается так: имя объекта (olio), точка, название метода и параметры в круглых скобках. Например, `koira1.hauku(2)` вызывает метод (metodi) `hauku` для объекта (olio) `koira1`. Внутри метода (metodi) можно обратиться к свойствам (ominaisuudet) текущего объекта (olio) через `self.haukahdus`.
 
-## Luokkamuuttuja eli staattinen muuttuja
+## Переменная класса (luokkamuuttuja) или статическая переменная
 
-Aiemmassa esimerkissä koiran ominaisuuksina olivat nimi, syntymävuosi ja haukahdus. Olion ominaisuudet ovat tietenkin oliokohtaisia, eli yhdellä koiralla voi olla eri nimi kuin toisella koiralla.
+Ранее у собаки (коира) были свойства (ominaisuudet) имя, год рождения и лай («haukahdus»). Эти свойства относятся к конкретному объекту (olio). Однако иногда нужно хранить информацию, относящуюся ко всему классу (luokka), а не к какому-то отдельному объекту (olio). Например, для «Собака (Koira)» это может быть общее количество созданных собак. Такое значение можно хранить в переменной класса (luokkamuuttuja), то есть статической переменной.
 
-Toisinaan on tarve tallentaa jokin koko luokkaa koskeva tieto, joka ei liity mihinkään yksittäiseen luokan olioon.
-Esimerkiksi `Koira`-luokan tapauksessa tällainen ominaisuus voisi olla tieto siitä, montako koiraa (eli `Koira`-luokan ilmentymää) kaiken kaikkiaan on luotu. Tällainen tieto voidaan tallentaa luokkamuuttujaan eli staattiseen muuttujaan.
-
-Seuraavassa esimerkissä on laadittu `tehty`-niminen luokkamuuttuja lukumäärän tallentamiseksi. Huomaa muuttujan sijoittaminen alustajan ulkopuolelle. Luokkamuuttujan määrityslauseeseen ei lisätä `self.`-etuliitettä. (Esimerkistä on jätetty pois aiempi haukkumistoiminnon toteutus.)
+Ниже в примере определена переменная класса (luokkamuuttuja) `tehty` для хранения количества созданных собак. Обратите внимание, что она задается вне конструктора (alustaja), и к ней не добавляется `self.` при объявлении. (Метод «hauku» из предыдущих примеров здесь опущен.)
 
 ```python
 class Koira:
@@ -165,9 +128,10 @@ koira2 = Koira("Rekku", 2022, "Viu viu viu")
 print (f"Koiria on nyt {Koira.tehty}.")
 ```
 
-Luokkamuuttujan arvoon viitataan kirjoittamalla sekä luokan että luokkamuuttujan nimi, esimerkissä siis `Koira.tehty`.
+Чтобы обратиться к значению переменной класса (luokkamuuttuja), пишем название класса (luokka) и переменной. В примере это `Koira.tehty`.
 
-Ohjelma tuottaa seuraavan tulosteen:
+Программа выводит:
+
 ```monospace
 Koiria on nyt 2.
 ```
